@@ -1,6 +1,6 @@
 USE [preguntas_respuestas]
 go
-create table [dbo].[datos_usuario]
+create table [dbo].[datos_usuario] 
 (
 		[Id][int]Identity(1,1)Not Null,
 		[Usuario][nvarchar](max) Not Null,
