@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+html,body{
+    position: relative;
+    width: 100%;
+    background: black;
+}
+.container{
+    position: relative;
+    /*width: 600px;*/
+    /*margin: 0 auto;*/
+    padding: 20px;
+    background-color: rgba(0,128,255,0.5);
+    height: 100%;
+
+    width: 100%;
+    max-width: 800px;
+    margin:auto;
+    /*position: relative;*/
+}
+
+.container h3{
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    color: #ffffff;
+}
+
+.container p{
+    text-align:left;
+    color: #ffffff;
+}
+
+.box-wrapper{
+    position: relative;
+}
+
+.box-wrapper .box{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    background: #2d4257f1;
+    border: 1px solid #425970;
+    border-bottom: 0;
+
+}
+
+.box-wrapper .box:hover{
+    background: #293e52;
+}
+
+.box-wrapper .box:first-child{
+    border-radius: 10px 10px 0 0;
+}
+
+.box-wrapper .box:last-child{
+    border-radius: 0 0 10px 10px;
+    border-bottom: 1px solid #425970;
+}
+
+.box-wrapper .box .checkbox-wrap{
+    position: relative;
+    width:40px;
+    height: 40px;
+    border-right: 1px solid #425970;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.box-wrapper .box .checkbox-wrap input[type="checkbox"]{
+    background: #78fed3;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.box-wrapper .box label{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.box-wrapper .box .checkbox-wrap span
+{
+    position: absolute;
+    width: 2.5px;
+    height: 56px;
+    background: transparent;
+    top: -8px;
+    left: -9px;
+    border-radius: 0 15px 15px 0;
+    z-index: 1;
+}
+
+.box-wrapper .box .checkbox-wrap input[type="checkbox"]:checked +span{
+    background: #0075ff;
+}
+
+
+/*TRabajando en el responsive desing*/
+@media screen and (max-width: 850px)
+{
+    .container{
+        padding: 5px;
+    }
+    .container h3{
+        margin: 10px 0 15px 0;
+    }
+}
+
+#botones button
+{
+    padding: 10px 40px;
+    border: 2px solid #fff;
+    background: #425970;/*transparent;*/
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;
+}
+
+#botones button:hover
+{
+    background: #fff;
+    color: #46A2FD;
+}
