@@ -8,6 +8,8 @@
     document.getElementById("Entrar").addEventListener("click",ObtenerDatosInicioSesion);
 
     anchoPagina();
+
+    document.getElementById("loader").classList.toggle("loader2");
 });
 
 
@@ -70,36 +72,52 @@ function register(){
 
 function ObtenerDatosRegistro()
 {
+    var validacion = 0;
+    
 
-    if ($("#nombre_completo").val() != undefined) {
-        nombre = $("#nombre_completo").val();
-    }
-
-    if ($("#correo").val() != undefined) {
+    if ($("#correo").val() != undefined && $("#correo").val().trim() != '') {
         correo = $("#correo").val();
     }
+    else
+    {
+        validacion = 1;
+    }
 
-    if ($("#usuario").val() != undefined) {
+    if ($("#usuario").val() != undefined && $("#usuario").val().trim() != '') {
         usuario = $("#usuario").val();
     }
-
-    if ($("#contrasena").val() != undefined) {
+    else
+    {
+        validacion = 1;
+    }
+    if ($("#contrasena").val() != undefined && $("#contrasena").val().trim() != '') {
         contrasena = $("#contrasena").val();
     }
-
-
-    let datos = {
-        usuario:usuario,
-        correo:correo,
-        contraseña:contrasena
+    else
+    {
+        validacion = 1;
     }
-    
-    callAjax(primario.urlConexion,
-        "Registro",
-        datos,
-        estadoRegistro        
-    );
 
+    if(validacion == 1)
+    {
+        alert("Llenar todos los campos");
+    }
+    else
+    {
+        
+        document.getElementById("loader").classList.toggle("loader2");
+        let datos = {
+            usuario:usuario,
+            correo:correo,
+            contraseña:contrasena
+        }
+        
+        callAjax(primario.urlConexion,
+            "Registro",
+            datos,
+            estadoRegistro        
+        );
+    }
     
 }
 
@@ -108,41 +126,64 @@ function estadoRegistro(RESULTADO)
     var c = 0;
     if(RESULTADO != "este usuario ya está registrado" && RESULTADO != "este correo ya está registrado")
     {
+        document.getElementById("loader").classList.toggle("loader2");
         alert("Usuario registrado, inicie sesion");
         inisiarSesion();
     }    
     else
     {
+        document.getElementById("loader").classList.toggle("loader2");
         alert(RESULTADO);
 
     }
+    
 }
 
 function ObtenerDatosInicioSesion()
 {
-    if ($("#CorreoInicioSesion").val() != undefined) {
+    var validacion = 0;
+    if ($("#CorreoInicioSesion").val() != undefined && $("#CorreoInicioSesion").val().trim() != '') {
         usuario = $("#CorreoInicioSesion").val();
     }
+    else
+    {
+        validacion = 1;
+    }
 
-    if ($("#contrasñaInicioSesion").val() != undefined) {
+    if ($("#contrasñaInicioSesion").val() != undefined && $("#contrasñaInicioSesion").val().trim() != '') {
         contrasena = $("#contrasñaInicioSesion").val();
     }
-    let datos = {
-        usuario:usuario,
-        contraseña:contrasena
+    else
+    {
+        validacion = 1;
     }
-    
-    callAjax(primario.urlConexion,
-        "Ingresar",
-        datos,
-        EstadoInicioSesion       
-    );
+
+    if(validacion == 1)
+    {
+        alert("Llenar todos los campos");
+    }
+    else
+    {
+        document.getElementById("loader").classList.toggle("loader2");
+        let datos = {
+            usuario:usuario,
+            contraseña:contrasena
+        }
+        
+        callAjax(primario.urlConexion,
+            "Ingresar",
+            datos,
+            EstadoInicioSesion       
+        );
+    }
 }
 
 function EstadoInicioSesion(RESULTADO)
 {
+    
     if(RESULTADO == "Contraseña incorrecta" || RESULTADO == "el usuario no está registrado")
     {        
+        document.getElementById("loader").classList.toggle("loader2");
         alert(RESULTADO);
     }
     else{
@@ -154,5 +195,4 @@ function EstadoInicioSesion(RESULTADO)
         
     }
     
-
 }

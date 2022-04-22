@@ -10,6 +10,7 @@
     <script src="librerias/Ajax/Ajax.js"></script>
 </head>
 <body>
+    
     <main>
         <div class="contenedor__todo"> 
             <div class="caja__trasera"> 
@@ -34,16 +35,17 @@
                 </form>
                 <form action="" class="formulario__register">
                     <h2>Registrarse</h2>
-                    <input type="text" placeholder="Nombre Completo" id="nombre_completo">
-                    <input type="text" placeholder="Correo Electronico" id="correo">
                     <input type="text" placeholder="Usuario" id="usuario">
-                    <input type="text" placeholder="Contraseña" id="contrasena">
+                    <input type="text" placeholder="Correo Electronico" id="correo">                    
+                    <input type="password" placeholder="Contraseña" id="contrasena">
                     <button id="Registrarse" type="button">Registrarse</button>
                 </form>
             </div>            
         </div>
     </main>
+    <div class="lds-spinner loader" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     <script src="variables.js"></script>
     <script src="index.js"></script>
+
 </body>
 </html>

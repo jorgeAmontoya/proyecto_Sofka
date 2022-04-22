@@ -1,9 +1,11 @@
 ﻿$(document).ready(function () {
     var x = 0;
+    
     cargarPregunta();
     $("#CargaUsuario").html(`<p>Nombre: ${usuario}</p>`)
     document.getElementById("btn__retirarse").addEventListener("click",retirarse);
     document.getElementById("btn__siguiente").addEventListener("click",siguiente);
+    
 });
 
 function estadoCheckbox_b()
@@ -72,7 +74,7 @@ function EstadocargarPregunta(RESULTADO)
         `
     }
     $("#opcionesRespuesta").html(respuestas)
-   
+    document.getElementById("loader").classList.toggle("loader2");
 }
 
 
@@ -88,6 +90,7 @@ function retirarse()
         puntosAcumulados: parseInt("0"),
         Idjuego:parseInt(idJuego)
     }    
+    document.getElementById("loader").classList.toggle("loader2");
     callAjax(urlConexionhistorico,
         "Historico",
         datos,
@@ -97,16 +100,17 @@ function retirarse()
 
 function Estadoretirarse(RESULTADO)
 {
-    debugger;
+    
     $("#puntosAcumulados").html(`<p>Puntos acumulados:${RESULTADO}</p>`);
     $("#Pregunta").html(`<span></span> <h3> Se ha retirado, su puntuación es de: ${RESULTADO}</h3>`);
     $("#opcionesRespuesta").html("");
     $("#botones").html("");
+    document.getElementById("loader").classList.toggle("loader2");
 }
 
 function siguiente()
 {
-    debugger;
+    
     var idOpcionRespuestaSeleccionada = "";
     var statusCorrecta = false;
     if($('#a').is(':checked'))
@@ -153,7 +157,8 @@ function siguiente()
             estadoFormaSalida:estadoGano,
             puntosAcumulados: parseInt(puntosPorNivel),
             Idjuego:parseInt(idJuego)
-        }    
+        } 
+        document.getElementById("loader").classList.toggle("loader2");   
         callAjax(urlConexionhistorico,
             "Historico",
             datos,
@@ -171,6 +176,7 @@ function siguiente()
             puntosAcumulados: parseInt(puntosPorNivel),
             Idjuego:parseInt(idJuego)
         }    
+        document.getElementById("loader").classList.toggle("loader2");
         callAjax(urlConexionhistorico,
             "Historico",
             datos,
@@ -184,11 +190,12 @@ function estadoSiguiente(RESULTADO)
     
     if(numPreguntasCorrectas == 5 && idNivel == 5)
     {
-        $("#Pregunta").html(`<span></span> <h3> Usted ha respondido todas las preguntas de manera correcta, termino el juego.: ${RESULTADO}</h3>`);
+        $("#Pregunta").html(`<span></span> <h3> Usted ha respondido todas las preguntas de manera correcta, termino el juego. Ha ganado: ${RESULTADO} Puntos</h3>`);
         $("#opcionesRespuesta").html("");
         $("#botones").html("");
         $("#puntosAcumulados").html(`<p>Puntos acumulados: ${RESULTADO}</p>`);
         $("#numPreguntasCorrectas").html(`<p>Número de preguntas correctas: ${numPreguntasCorrectas}</p>`);
+        document.getElementById("loader").classList.toggle("loader2");
     }
     if(numPreguntasCorrectas ==5)
     {
@@ -196,13 +203,15 @@ function estadoSiguiente(RESULTADO)
         numPreguntasCorrectas = 0;        
         puntosPorNivel = 100000*idNivel;
     }
-    
+
     if(idNivel <= 5)
     {
         $("#puntosAcumulados").html(`<p>Puntos acumulados: ${RESULTADO}</p>`);
         $("#numNivel").html(`<p>Nivel ${idNivel}</p>`);
         $("#numPreguntasCorrectas").html(`<p>Número de preguntas correctas: ${numPreguntasCorrectas}</p>`);
+        document.getElementById("loader").classList.toggle("loader2");
         alert("Respuesta Correcta, pasara a la siguiente pregunta");
+        document.getElementById("loader").classList.toggle("loader2");
         cargarPregunta();
     }
 }
@@ -213,4 +222,5 @@ function estadoError(RESULTADO)
     $("#Pregunta").html(`<span></span> <h3>Ha perdido, su puntuación es de: ${RESULTADO}</h3>`);
     $("#opcionesRespuesta").html("");
     $("#botones").html("");
+    document.getElementById("loader").classList.toggle("loader2");
 }
